@@ -1,10 +1,9 @@
 package uniquindio.seminario.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,6 +22,10 @@ public class MaquinaFisica {
 
     @Column(length = 50)
     private String ip;
+
+    @OneToMany(mappedBy = "mfisica")
+    @ToString.Exclude
+    private List<MaquinaVirtual> maquinas;
 
     public MaquinaFisica(String idMF, String especs, String ip) {
 

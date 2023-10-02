@@ -27,9 +27,9 @@ public class Usuario {
     private String contrasenia;
 
     @ManyToOne
-    private Rol rol;
+    private TipoUsuario tipoUsuario;
 
-    @OneToMany(mappedBy = "maquinavirtual")
+    @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
     private List<MaquinaVirtual> maquinasVirtuales;
 

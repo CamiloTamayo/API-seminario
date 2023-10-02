@@ -33,12 +33,16 @@ public class MaquinaVirtual {
     @ManyToOne
     private MaquinaFisica mfisica;
 
-    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, Usuario usuario, MaquinaFisica mfisica) {
+    @Column(length = 50)
+    private String estado;
+
+    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, Usuario usuario, MaquinaFisica mfisica, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
         this.hostname = hostname;
         this.usuario = usuario;
         this.mfisica = mfisica;
+        this.estado = estado;
     }
 }

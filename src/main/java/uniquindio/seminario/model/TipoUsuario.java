@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class TipoMaquina {
+public class TipoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,7 @@ public class TipoMaquina {
     @Column(length = 50)
     private String nombre;
 
-    @Column(length = 50)
-    private String sistemaOperativo;
-
-    @OneToMany(mappedBy = "tipoMaquina")
+    @OneToMany(mappedBy = "tipoUsuario")
     @ToString.Exclude
-    private List<MaquinaVirtual> maquinas;
+    private List<Usuario> usuarios;
 }
