@@ -15,7 +15,7 @@ public class MaquinaFisica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private String idMF;
+    private Integer idMF;
 
     @Column(length = 150)
     private String especs;
@@ -27,7 +27,7 @@ public class MaquinaFisica {
     @ToString.Exclude
     private List<MaquinaVirtual> maquinas;
 
-    public MaquinaFisica(String idMF, String especs, String ip) {
+    public MaquinaFisica(Integer idMF, String especs, String ip) {
 
         this.idMF = idMF;
         this.especs =  especs;

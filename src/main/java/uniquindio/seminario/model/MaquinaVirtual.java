@@ -36,6 +36,9 @@ public class MaquinaVirtual {
     @Column(length = 50)
     private String estado;
 
+    @ManyToOne
+    private TipoMaquina tipoMaquina;
+
     public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, Usuario usuario, MaquinaFisica mfisica, String estado) {
         this.id = id;
         this.nombre = nombre;
