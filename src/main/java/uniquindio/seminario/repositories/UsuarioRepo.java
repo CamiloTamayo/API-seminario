@@ -9,4 +9,6 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Integer>{
 
     @Query("select u from Usuario u where u.nombre=:nombre")
     Usuario findByNombre(String nombre);
+
+
 }

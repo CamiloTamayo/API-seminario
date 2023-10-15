@@ -1,12 +1,13 @@
 package uniquindio.seminario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import uniquindio.seminario.model.MaquinaVirtual;
 import uniquindio.seminario.repositories.MaquinaVirtualRepo;
 
 import java.io.Serializable;
-
+@Component
 public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Serializable {
 
     @Autowired

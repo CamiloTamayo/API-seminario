@@ -39,7 +39,7 @@ public class MaquinaVirtual {
     @ManyToOne
     private TipoMaquina tipoMaquina;
 
-    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, Usuario usuario, MaquinaFisica mfisica, String estado) {
+    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, Usuario usuario, MaquinaFisica mfisica, TipoMaquina tipoMaquina, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
@@ -47,5 +47,6 @@ public class MaquinaVirtual {
         this.usuario = usuario;
         this.mfisica = mfisica;
         this.estado = estado;
+        this.tipoMaquina = tipoMaquina;
     }
 }
