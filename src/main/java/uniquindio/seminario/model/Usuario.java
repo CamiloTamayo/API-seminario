@@ -21,6 +21,9 @@ public class Usuario {
     private String nombre;
 
     @Column(length = 50)
+    private String apellidos;
+
+    @Column(length = 50)
     private String correo;
 
     @Column(length = 50)

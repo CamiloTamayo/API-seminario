@@ -20,8 +20,8 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
 
     @Override
     @Transactional(readOnly = false)
-    public void guardarUsuario(Usuario usuario) {
-        usuarioRepo.save(usuario);
+    public Usuario guardarUsuario(Usuario usuario) {
+        return usuarioRepo.save(usuario);
     }
     @Override
     @Transactional(readOnly = false)

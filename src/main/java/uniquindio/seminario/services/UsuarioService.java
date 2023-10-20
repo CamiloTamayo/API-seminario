@@ -6,7 +6,7 @@ import uniquindio.seminario.model.Usuario;
 public interface UsuarioService {
 
     public Usuario obtenerUsuarioID(Integer id);
-    public void guardarUsuario(Usuario usuario);
+    public Usuario guardarUsuario(Usuario usuario);
 
     public void borrarUsuario(Usuario usuario);
 
