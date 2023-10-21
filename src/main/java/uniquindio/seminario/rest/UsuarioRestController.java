@@ -23,7 +23,13 @@ public class UsuarioRestController {
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getCorreo(), usuario.getApellidos(), usuario.getContrasenia());
         usuarioDTO.setToken(userAuthProvider.createToken(usuarioDTO));
         usuarioService.guardarUsuario(usuario);
-        return ResponseEntity.created(URI.create("/users/"+ usuarioDTO.getId())).body(usuarioDTO);
+        return ResponseEntity.created(URI.create("/register/"+ usuarioDTO.getId())).body(usuarioDTO);
+    }
+
+    @PostMapping("/getUser")
+    public  ResponseEntity<Usuario> getUser(@RequestBody String userId){
+        Usuario user = usuarioService.obtenerUsuarioID(Integer.parseInt(userId));
+        return ResponseEntity.created(URI.create("/getUser/"+ user.getId())).body(user);
     }
 
 }

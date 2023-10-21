@@ -1,5 +1,6 @@
 package uniquindio.seminario.configuration;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +25,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             if(authElements.length == 2 && "Bearer".equals(authElements[0])){
                 try{
                     SecurityContextHolder.getContext().setAuthentication(userAuthProvider.validateToken(authElements[1]));
-                } catch (RuntimeException e){
+                } catch (TokenExpiredException e){
                     SecurityContextHolder.clearContext();
                     throw e;
                 }

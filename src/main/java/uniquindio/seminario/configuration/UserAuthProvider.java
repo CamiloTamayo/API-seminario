@@ -37,6 +37,7 @@ public class UserAuthProvider {
                 .withExpiresAt(validity)
                 .withClaim("nombre", usuarioDTO.getNombre())
                 .withClaim("apellidos", usuarioDTO.getApellidos())
+                .withClaim("id", usuarioDTO.getId())
                 .sign(Algorithm.HMAC256(secretKey));
     }
 
