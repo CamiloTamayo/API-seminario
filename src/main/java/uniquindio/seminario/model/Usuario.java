@@ -17,16 +17,13 @@ public class Usuario {
     @EqualsAndHashCode.Include
     private int id;
 
-    @Column(length = 50)
+    @Column(name = "nombre")
     private String nombre;
-
-    @Column(length = 50)
+    @Column(name = "apellidos")
     private String apellidos;
-
-    @Column(length = 50)
+    @Column(name = "correo")
     private String correo;
-
-    @Column(length = 50)
+    @Column(name = "contrasenia")
     private String contrasenia;
 
     @ManyToOne
