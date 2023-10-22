@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class MaquinaVirtualDTO {
     String estado;
     String hostname;
@@ -18,6 +17,15 @@ public class MaquinaVirtualDTO {
     Integer idUser;
     Integer tipoMV;
 
+    public MaquinaVirtualDTO(String estado, String hostname, String ip, String nombre, Integer idMF, Integer idUser, Integer tipoMV) {
+        this.estado = estado;
+        this.hostname = hostname;
+        this.ip = ip;
+        this.nombre = nombre;
+        this.idMF = idMF;
+        this.idUser = idUser;
+        this.tipoMV = tipoMV;
+    }
 }
 
 

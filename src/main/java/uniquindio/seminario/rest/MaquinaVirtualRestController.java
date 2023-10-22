@@ -3,6 +3,7 @@ package uniquindio.seminario.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaFisica;
@@ -13,6 +14,8 @@ import uniquindio.seminario.services.MaquinaFisicaService;
 import uniquindio.seminario.services.MaquinaVirtualService;
 import uniquindio.seminario.services.TipoMaquinaService;
 import uniquindio.seminario.services.UsuarioService;
+
+import java.net.URI;
 
 @RestController
 @CrossOrigin
@@ -36,5 +39,11 @@ public class MaquinaVirtualRestController {
         TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(mvDTO.getTipoMV());
         MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina, mvDTO.getEstado());
         maquinaVirtualService.guardarMV(mv);
+    }
+
+    @PostMapping("/getUser")
+    public ResponseEntity<Usuario> getUser(@RequestBody String userId){
+        Usuario user = usuarioService.obtenerUsuarioID(Integer.parseInt(userId));
+        return ResponseEntity.created(URI.create("/getUser/"+ user.getId())).body(user);
     }
 }
