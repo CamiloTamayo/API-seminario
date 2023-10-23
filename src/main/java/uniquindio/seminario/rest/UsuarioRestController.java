@@ -20,16 +20,23 @@ public class UsuarioRestController {
     UserAuthProvider userAuthProvider;
     @PostMapping("/register")
     public ResponseEntity<UsuarioDTO> guardar(@RequestBody Usuario usuario){
-        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getCorreo(), usuario.getApellidos(), usuario.getContrasenia());
+        UsuarioDTO usuarioDTO = usuarioService.guardarUsuario(usuario);
         usuarioDTO.setToken(userAuthProvider.createToken(usuarioDTO));
-        usuarioService.guardarUsuario(usuario);
         return ResponseEntity.created(URI.create("/register/"+ usuarioDTO.getId())).body(usuarioDTO);
     }
 
     @PostMapping("/getUser")
-    public  ResponseEntity<Usuario> getUser(@RequestBody String userId){
-        Usuario user = usuarioService.obtenerUsuarioID(Integer.parseInt(userId));
-        return ResponseEntity.created(URI.create("/getUser/"+ user.getId())).body(user);
+    public  ResponseEntity<Usuario> getUser(@RequestBody String correo){
+
+        Usuario user = usuarioService.obtenerUsuarioCorreo(correo);
+        System.out.println("IDDDD"+ user);
+        return ResponseEntity.created(URI.create("/getUser/"+ user.getCorreo())).body(user);
     }
 
+    @PostMapping("/getUserEmail")
+    public  ResponseEntity<Usuario> getUserEmail(@RequestBody String correo){
+        System.out.println("CORREOOO: "+ correo);
+        Usuario user = usuarioService.obtenerUsuarioCorreo(correo);
+        return ResponseEntity.created(URI.create("/getUserEmail/"+ user.getId())).body(user);
+    }
 }

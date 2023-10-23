@@ -31,6 +31,12 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
     }
 
     @Override
+    public Usuario obtenerUsuarioCorreo(String correo) {
+        String correoABuscar = correo.replace("\"", "");
+        return usuarioRepo.findByCorreo(correoABuscar);
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public void borrarUsuario(Usuario usuario) {
         usuarioRepo.delete(usuario);
@@ -43,17 +49,16 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
 
     public UsuarioDTO login(CredentialsDTO credentialsDTO){
         UsuarioDTO usuarioDTO;
-        Usuario usuario = usuarioRepo.findByCorreo(credentialsDTO.getCorreo())
+        Usuario usuario = Optional.ofNullable(usuarioRepo.findByCorreo(credentialsDTO.getCorreo()))
                 .orElseThrow(() -> new AppException("Usuario desconocido", HttpStatus.NOT_FOUND));
-        System.out.println("Credenciales: "+ credentialsDTO.getCorreo()+ credentialsDTO.getPassword());
-        System.out.println("Usuario: "+ usuario.getNombre() + usuario.getCorreo());
+        System.out.println("USUARIO"+ usuario.getNombre());
         if(passwordEncoder.matches(CharBuffer.wrap(credentialsDTO.getPassword()), usuario.getContrasenia())){
             return usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getCorreo(), usuario.getApellidos(), usuario.getContrasenia());
         }
         throw new AppException("Contraseña incorrecta", HttpStatus.BAD_REQUEST);
     }
     public UsuarioDTO guardarUsuario(Usuario usuarioDTO){
-        Optional<Usuario>oUser = usuarioRepo.findByCorreo(usuarioDTO.getCorreo());
+        Optional<Usuario>oUser = Optional.ofNullable(usuarioRepo.findByCorreo(usuarioDTO.getCorreo()));
         if(oUser.isPresent()){
             throw new AppException("El usuario ya existe", HttpStatus.BAD_REQUEST);
         }
