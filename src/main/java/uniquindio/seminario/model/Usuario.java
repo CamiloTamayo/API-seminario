@@ -1,5 +1,6 @@
 package uniquindio.seminario.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<MaquinaVirtual> maquinasVirtuales;
 
     public Usuario(int id, String nombre, String correo, String contrasenia) {

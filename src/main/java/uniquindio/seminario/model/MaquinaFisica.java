@@ -1,5 +1,6 @@
 package uniquindio.seminario.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,6 +41,7 @@ public class MaquinaFisica {
 
     @OneToMany(mappedBy = "mfisica")
     @ToString.Exclude
+    @JsonIgnore
     private List<MaquinaVirtual> maquinas;
 
     public MaquinaFisica(String ip, Integer ramMB, Integer cpu, Integer storageGB, String hostname, String os, String bridgeAdapter, List<MaquinaVirtual> maquinas) {
