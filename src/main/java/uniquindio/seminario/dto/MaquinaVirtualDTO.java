@@ -9,22 +9,24 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MaquinaVirtualDTO {
-    String estado;
-    String hostname;
-    String ip;
-    String nombre;
-    Integer idMF;
-    Integer idUser;
-    Integer tipoMV;
+    private String id;
+    private String nombre;
+    private String ip;
+    private String hostname;
+    private Integer idUser;
+    private String estado;
+    private String tipoMV;
+    private Integer idMF;
 
-    public MaquinaVirtualDTO(String estado, String hostname, String ip, String nombre, Integer idMF, Integer idUser, Integer tipoMV) {
-        this.estado = estado;
-        this.hostname = hostname;
-        this.ip = ip;
+    public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String estado, String tipoMV, Integer idMF) {
+        this.id = id;
         this.nombre = nombre;
-        this.idMF = idMF;
+        this.ip = ip;
+        this.hostname = hostname;
         this.idUser = idUser;
+        this.estado = estado;
         this.tipoMV = tipoMV;
+        this.idMF = idMF;
     }
 }
 

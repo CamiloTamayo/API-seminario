@@ -3,8 +3,8 @@ package uniquindio.seminario.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uniquindio.seminario.dto.CredentialsDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaFisica;
 import uniquindio.seminario.model.MaquinaVirtual;
@@ -14,8 +14,7 @@ import uniquindio.seminario.services.MaquinaFisicaService;
 import uniquindio.seminario.services.MaquinaVirtualService;
 import uniquindio.seminario.services.TipoMaquinaService;
 import uniquindio.seminario.services.UsuarioService;
-
-import java.net.URI;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -36,14 +35,16 @@ public class MaquinaVirtualRestController {
         MaquinaVirtualDTO mvDTO = new ObjectMapper().readValue(jsonBody, MaquinaVirtualDTO.class);
         MaquinaFisica mf = maquinaFisicaService.obtenerMFID(mvDTO.getIdMF());
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
-        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(mvDTO.getTipoMV());
+        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt(mvDTO.getTipoMV()));
         MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina, mvDTO.getEstado());
         maquinaVirtualService.guardarMV(mv);
     }
 
-    @PostMapping("/getUser")
-    public ResponseEntity<Usuario> getUser(@RequestBody String userId){
-        Usuario user = usuarioService.obtenerUsuarioID(Integer.parseInt(userId));
-        return ResponseEntity.created(URI.create("/getUser/"+ user.getId())).body(user);
+    @PostMapping("/getvms")
+    public List<MaquinaVirtual> getMVs(@RequestBody String userId){
+        System.out.println(userId);
+        List<MaquinaVirtual> maquinas = maquinaVirtualService.obtenerMaquinasVirtuales(userId);
+        return maquinas;
     }
+
 }

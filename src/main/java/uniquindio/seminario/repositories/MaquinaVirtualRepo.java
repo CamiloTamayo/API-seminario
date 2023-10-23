@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Integer> {
 
-    @Query("select m from MaquinaVirtual m where m.usuario.correo=:correo")
-    List<MaquinaVirtual> findByUser(String correo);
+    @Query("select m from MaquinaVirtual m where m.usuario.id=:id")
+    List<MaquinaVirtual> findByUser(Integer id);
 
     @Query("select m from MaquinaVirtual  m where m.id=:idVM")
     MaquinaVirtual obtenerDetalles(Integer idVM);
