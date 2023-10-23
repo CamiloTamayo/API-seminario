@@ -37,8 +37,8 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
     @Transactional(readOnly = false)
     public void actualizarMV(MaquinaVirtual mv) {
     }
-    public List<MaquinaVirtual> obtenerMaquinasVirtuales(String userId) {
-        List<MaquinaVirtual> maquinas = mvRepo.findByUser(Integer.parseInt(userId));
+    public List<MaquinaVirtual> obtenerMaquinasVirtuales(Integer userId) {
+        List<MaquinaVirtual> maquinas = mvRepo.findByUser(userId);
         //System.out.println("Credenciales: "+ credentialsDTO.getId()+ credentialsDTO.getPassword());
         System.out.println("lista"+maquinas.size());
         return maquinas;

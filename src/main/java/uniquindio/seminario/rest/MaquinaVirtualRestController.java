@@ -30,18 +30,18 @@ public class MaquinaVirtualRestController {
     @Autowired
     private TipoMaquinaService tipoMaquinaService;
 
-    @PostMapping("/savemv")
-    public void guardarMV(@RequestBody String jsonBody) throws JsonProcessingException {
-        MaquinaVirtualDTO mvDTO = new ObjectMapper().readValue(jsonBody, MaquinaVirtualDTO.class);
-        MaquinaFisica mf = maquinaFisicaService.obtenerMFID(mvDTO.getIdMF());
+    @PostMapping("/savevm")
+    public void guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) throws JsonProcessingException {
+        System.out.println("mvDTO: "+mvDTO);
+        MaquinaFisica mf = maquinaFisicaService.obtenerMFID(1);
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
-        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt(mvDTO.getTipoMV()));
-        MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina, mvDTO.getEstado());
+        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt("1"));
+        MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina , mvDTO.getEstado());
         maquinaVirtualService.guardarMV(mv);
     }
 
     @PostMapping("/getvms")
-    public List<MaquinaVirtual> getMVs(@RequestBody String userId){
+    public List<MaquinaVirtual> getMVs(@RequestBody Integer userId){
         System.out.println(userId);
         List<MaquinaVirtual> maquinas = maquinaVirtualService.obtenerMaquinasVirtuales(userId);
         return maquinas;

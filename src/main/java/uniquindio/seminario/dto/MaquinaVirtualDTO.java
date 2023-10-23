@@ -18,6 +18,20 @@ public class MaquinaVirtualDTO {
     private String tipoMV;
     private Integer idMF;
 
+    @Override
+    public String toString() {
+        return "MaquinaVirtualDTO{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", ip='" + ip + '\'' +
+                ", hostname='" + hostname + '\'' +
+                ", idUser=" + idUser +
+                ", estado='" + estado + '\'' +
+                ", tipoMV='" + tipoMV + '\'' +
+                ", idMF=" + idMF +
+                '}';
+    }
+
     public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String estado, String tipoMV, Integer idMF) {
         this.id = id;
         this.nombre = nombre;

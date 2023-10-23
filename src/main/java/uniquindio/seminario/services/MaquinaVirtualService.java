@@ -12,5 +12,5 @@ public interface MaquinaVirtualService {
     public void eliminarMV(MaquinaVirtual mv);
     public void actualizarMV(MaquinaVirtual mv);
 
-    public List<MaquinaVirtual> obtenerMaquinasVirtuales(String userId);
+    public List<MaquinaVirtual> obtenerMaquinasVirtuales(Integer userId);
 }
