@@ -21,7 +21,7 @@ public class SecurityConfig {
         System.out.println("HOLAAAAAAAA");
         http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((authorize) -> authorize.antMatchers(HttpMethod.POST,"/api/**").permitAll()
+                .authorizeHttpRequests((authorize) -> authorize.antMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
