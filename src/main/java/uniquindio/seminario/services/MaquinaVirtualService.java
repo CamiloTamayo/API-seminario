@@ -13,4 +13,6 @@ public interface MaquinaVirtualService {
     public void actualizarMV(MaquinaVirtual mv);
 
     public List<MaquinaVirtual> obtenerMaquinasVirtuales(Integer userId);
+
+    public void cambiarEstado(Integer userId, String nuevoEstado);
 }

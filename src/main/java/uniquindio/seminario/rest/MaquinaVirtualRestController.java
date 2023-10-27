@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uniquindio.seminario.dto.CredentialsDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
+import uniquindio.seminario.dto.UpdateDTO;
 import uniquindio.seminario.model.MaquinaFisica;
 import uniquindio.seminario.model.MaquinaVirtual;
 import uniquindio.seminario.model.TipoMaquina;
@@ -45,6 +46,14 @@ public class MaquinaVirtualRestController {
         System.out.println(userId);
         List<MaquinaVirtual> maquinas = maquinaVirtualService.obtenerMaquinasVirtuales(userId);
         return maquinas;
+    }
+
+    @PostMapping("/updatevms")
+    public void actualizarEstado(@RequestBody UpdateDTO update){
+        Integer userId = update.getId();
+        String estado = update.getEstado();
+
+        maquinaVirtualService.cambiarEstado(userId, estado);
     }
 
 }
