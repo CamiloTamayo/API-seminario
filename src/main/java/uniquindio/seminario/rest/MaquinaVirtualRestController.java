@@ -32,13 +32,13 @@ public class MaquinaVirtualRestController {
     private TipoMaquinaService tipoMaquinaService;
 
     @PostMapping("/savevm")
-    public void guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) throws JsonProcessingException {
+    public MaquinaVirtualDTO guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) {
         System.out.println("mvDTO: "+mvDTO);
         MaquinaFisica mf = maquinaFisicaService.obtenerMFID(1);
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
         TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt("1"));
         MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina , mvDTO.getEstado());
-        maquinaVirtualService.guardarMV(mv);
+        return maquinaVirtualService.guardarMV(mv);
     }
 
     @PostMapping("/getvms")

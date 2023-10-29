@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaVirtual;
 import uniquindio.seminario.repositories.MaquinaVirtualRepo;
 import uniquindio.seminario.repositories.UsuarioRepo;
@@ -20,8 +21,13 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
 
     @Override
     @Transactional(readOnly = false)
-    public void guardarMV(MaquinaVirtual mv) {
-        mvRepo.save(mv);
+    public MaquinaVirtualDTO guardarMV(MaquinaVirtual mv) {
+
+        MaquinaVirtual vm = mvRepo.save(mv);
+        String nombre = vm.getNombre()+vm.getId();
+        MaquinaVirtualDTO maquinaDTO = new MaquinaVirtualDTO(vm.getId()+"", vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getEstado(), vm.getTipoMaquina().getNombre(), vm.getMfisica().getIdMF());
+        mvRepo.actualizarNombre(vm.getId(), nombre);
+        return maquinaDTO;
     }
 
     @Override
