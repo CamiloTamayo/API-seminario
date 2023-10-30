@@ -33,9 +33,9 @@ public class MaquinaVirtualRestController {
 
     @PostMapping("/savevm")
     public MaquinaVirtualDTO guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) {
-        MaquinaFisica mf = maquinaFisicaService.obtenerMFID(1);
+        MaquinaFisica mf = maquinaFisicaService.obtenerMFID(mvDTO.getIdMF());
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
-        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt("1"));
+        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt(mvDTO.getTipoMV()));
         MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina , mvDTO.getEstado());
         return maquinaVirtualService.guardarMV(mv);
     }
@@ -53,6 +53,11 @@ public class MaquinaVirtualRestController {
         String estado = update.getEstado();
 
         maquinaVirtualService.cambiarEstado(userId, estado);
+    }
+
+    @GetMapping("/obtenerMayor")
+    public Integer obtenerUltimaVM(){
+        return maquinaVirtualService.obtenerUltimaVM();
     }
 
 }

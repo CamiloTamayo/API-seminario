@@ -26,7 +26,7 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
         MaquinaVirtual vm = mvRepo.save(mv);
         String nombre = vm.getNombre()+vm.getId();
         MaquinaVirtualDTO maquinaDTO = new MaquinaVirtualDTO(vm.getId()+"", vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getEstado(), vm.getTipoMaquina().getNombre(), vm.getMfisica().getIdMF());
-        mvRepo.actualizarNombre(vm.getId(), nombre);
+        //mvRepo.actualizarNombre(vm.getId(), nombre);
         return maquinaDTO;
     }
 
@@ -49,5 +49,8 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
         mvRepo.cambiarEstado(UserId, estadoNuevo);
     }
 
-
+    public Integer obtenerUltimaVM(){
+        System.out.println(mvRepo.obtenerUltimaVM()+"idUltima");
+        return mvRepo.obtenerUltimaVM();
+    }
 }
