@@ -33,7 +33,6 @@ public class MaquinaVirtualRestController {
 
     @PostMapping("/savevm")
     public MaquinaVirtualDTO guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) {
-        System.out.println("mvDTO: "+mvDTO);
         MaquinaFisica mf = maquinaFisicaService.obtenerMFID(1);
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
         TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(Integer.parseInt("1"));

@@ -7,6 +7,8 @@ import uniquindio.seminario.model.MaquinaFisica;
 import uniquindio.seminario.repositories.MaquinaFisicaRepo;
 
 import java.io.Serializable;
+import java.util.List;
+
 @Component
 public class MaquinaFisicaServiceImpl implements MaquinaFisicaService, Serializable {
 
@@ -15,8 +17,8 @@ public class MaquinaFisicaServiceImpl implements MaquinaFisicaService, Serializa
 
     @Override
     @Transactional(readOnly = false)
-    public void crearMF(MaquinaFisica maquinaFisica) {
-        maquinaFisicaRepo.save(maquinaFisica);
+    public MaquinaFisica crearMF(MaquinaFisica maquinaFisica) {
+        return maquinaFisicaRepo.save(maquinaFisica);
     }
 
     @Override
@@ -28,8 +30,10 @@ public class MaquinaFisicaServiceImpl implements MaquinaFisicaService, Serializa
     @Override
     @Transactional(readOnly = false)
     public void actualizarMF(MaquinaFisica maquinaFisica) {
-
     }
+
+    @Transactional(readOnly = true)
+    public List<MaquinaFisica> findAll(){return maquinaFisicaRepo.findAll();}
 
     @Override
     public MaquinaFisica obtenerMFID(Integer id) {

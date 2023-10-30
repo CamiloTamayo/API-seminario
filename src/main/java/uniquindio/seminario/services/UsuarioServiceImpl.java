@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import uniquindio.seminario.dto.CredentialsDTO;
 import uniquindio.seminario.dto.UsuarioDTO;
 import uniquindio.seminario.exceptions.AppException;
+import uniquindio.seminario.model.MaquinaFisica;
 import uniquindio.seminario.repositories.UsuarioRepo;
 import uniquindio.seminario.model.Usuario;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.nio.CharBuffer;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -67,5 +69,6 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
         Usuario savedUser = usuarioRepo.save(usuarioDTO);
         return new UsuarioDTO(savedUser.getId(), savedUser.getNombre(), savedUser.getCorreo(), savedUser.getApellidos(), savedUser.getContrasenia());
     }
+
 
 }

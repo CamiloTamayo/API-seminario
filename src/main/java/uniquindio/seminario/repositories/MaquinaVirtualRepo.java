@@ -19,7 +19,6 @@ public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Intege
     @Query("select m from MaquinaVirtual  m where m.id=:idVM")
     MaquinaVirtual obtenerDetalles(Integer idVM);
 
-
     @Modifying
     @Query("UPDATE MaquinaVirtual m SET m.estado = :estado WHERE m.id = :idVM")
     void cambiarEstado(@Param("idVM") Integer idVM, @Param("estado") String estado);
