@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface MaquinaVirtualService {
     public MaquinaVirtualDTO guardarMV(MaquinaVirtual mv);
-    public void eliminarMV(MaquinaVirtual mv);
+    public void eliminarMV(Integer vmId);
     public void actualizarMV(MaquinaVirtual mv);
 
     public List<MaquinaVirtual> obtenerMaquinasVirtuales(Integer userId);

@@ -60,4 +60,11 @@ public class MaquinaVirtualRestController {
         return maquinaVirtualService.obtenerUltimaVM();
     }
 
+    @DeleteMapping("/deletevm")
+    public void eliminarVM(@RequestBody UpdateDTO update){
+        Integer vmId = update.getId();
+
+        maquinaVirtualService.eliminarMV(vmId);
+    }
+
 }

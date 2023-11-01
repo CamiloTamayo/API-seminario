@@ -30,4 +30,9 @@ public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Intege
 
     @Query("select m.id from MaquinaVirtual m WHERE m.id = (SELECT MAX(id) FROM MaquinaVirtual)")
     Integer obtenerUltimaVM();
+
+    @Modifying
+    @Query("DELETE FROM MaquinaVirtual WHERE id = :idVM")
+    void eliminarVM(@Param("idVM") Integer idVM);
+
 }

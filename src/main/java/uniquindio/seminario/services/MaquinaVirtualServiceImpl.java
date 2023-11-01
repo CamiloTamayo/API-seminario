@@ -32,8 +32,8 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
 
     @Override
     @Transactional(readOnly = false)
-    public void eliminarMV(MaquinaVirtual mv) {
-        mvRepo.delete(mv);
+    public void eliminarMV(Integer vmId) {
+        mvRepo.eliminarVM(vmId);
     }
 
     @Override
