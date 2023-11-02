@@ -15,7 +15,7 @@ public class MaquinaVirtualDTO {
     private String hostname;
     private Integer idUser;
     private String estado;
-    private String tipoMV;
+    private Integer tipoMV;
     private Integer idMF;
 
     @Override
@@ -32,7 +32,7 @@ public class MaquinaVirtualDTO {
                 '}';
     }
 
-    public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String estado, String tipoMV, Integer idMF) {
+    public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String estado, Integer tipoMV, Integer idMF) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
