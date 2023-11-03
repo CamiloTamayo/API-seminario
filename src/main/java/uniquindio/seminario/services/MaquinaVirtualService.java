@@ -17,5 +17,6 @@ public interface MaquinaVirtualService {
 
     public void cambiarEstado(Integer userId, String nuevoEstado);
 
+    public void cambiarIP(Integer userId, String nuevaIP);
     public Integer obtenerUltimaVM();
 }

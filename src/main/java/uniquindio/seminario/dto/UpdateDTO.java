@@ -8,16 +8,16 @@ import lombok.Data;
 @Builder
 public class UpdateDTO {
     private Integer id;
-    private String estado;
+    private String cambio;
 
 
     public UpdateDTO() {
 
 
     }
-    public UpdateDTO(Integer id, String estado) {
+    public UpdateDTO(Integer id, String cambio) {
         this.id = id;
-        this.estado = estado;
+        this.cambio = cambio;
 
     }
 
