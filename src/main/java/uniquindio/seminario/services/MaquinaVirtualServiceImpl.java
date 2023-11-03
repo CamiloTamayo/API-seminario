@@ -54,6 +54,11 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
         mvRepo.cambiarIP(userId, nuevaIP);
     }
 
+    @Override
+    public void cambiarHostname(Integer userId, String hostname) {
+        mvRepo.cambiarHostname(userId, hostname);
+    }
+
     public Integer obtenerUltimaVM(){
         System.out.println(mvRepo.obtenerUltimaVM()+"idUltima");
         return mvRepo.obtenerUltimaVM();

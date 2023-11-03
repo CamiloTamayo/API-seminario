@@ -58,10 +58,16 @@ public class MaquinaVirtualRestController {
 
     @PostMapping("/updatevmi")
     public void actualizarIP(@RequestBody UpdateDTO update){
-        System.out.println("UPDATE: "+update);
         Integer userId = update.getId();
         String ip = update.getCambio();
         maquinaVirtualService.cambiarIP(userId, ip);
+    }
+
+    @PostMapping("/updatevmh")
+    public void actualizarHostname(@RequestBody UpdateDTO update){
+        Integer userId = update.getId();
+        String hostname = update.getCambio();
+        maquinaVirtualService.cambiarHostname(userId, hostname);
     }
 
     @GetMapping("/obtenerMayor")
