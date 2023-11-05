@@ -36,4 +36,9 @@ public class TipoMaquinaServiceImpl implements TipoMaquinaService, Serializable 
 
     }
 
+    @Override
+    public String obtenerTipo(Integer id) {
+        return tipoMaquinaRepo.obtenerTipo(id);
+    }
+
 }

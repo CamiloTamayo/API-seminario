@@ -8,4 +8,6 @@ public interface TipoMaquinaService {
     public void guardarTipoMaquina(TipoMaquina tipoMaquina);
     public void eliminarTipoMaquina(TipoMaquina tipoMaquina);
     public void actualizarTipoMaquina(TipoMaquina tipoMaquina);
+
+    String obtenerTipo(Integer id);
 }
