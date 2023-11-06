@@ -5,6 +5,7 @@ import uniquindio.seminario.dto.CredentialsDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaVirtual;
 
+import java.security.InvalidKeyException;
 import java.util.List;
 
 @Service
@@ -15,6 +16,7 @@ public interface MaquinaVirtualService {
 
     public List<MaquinaVirtual> obtenerMaquinasVirtuales(Integer userId);
 
+    public MaquinaVirtual getVM(Integer idVM);
     public void cambiarEstado(Integer userId, String nuevoEstado);
 
     public void cambiarIP(Integer userId, String nuevaIP);

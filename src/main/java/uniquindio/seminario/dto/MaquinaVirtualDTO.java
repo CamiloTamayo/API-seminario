@@ -14,6 +14,7 @@ public class MaquinaVirtualDTO {
     private String ip;
     private String hostname;
     private Integer idUser;
+    private String contrasenia;
     private String estado;
     private Integer tipoMV;
     private Integer idMF;
@@ -32,12 +33,13 @@ public class MaquinaVirtualDTO {
                 '}';
     }
 
-    public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String estado, Integer tipoMV, Integer idMF) {
+    public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String contrasenia, String estado, Integer tipoMV, Integer idMF) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
         this.hostname = hostname;
         this.idUser = idUser;
+        this.contrasenia = contrasenia;
         this.estado = estado;
         this.tipoMV = tipoMV;
         this.idMF = idMF;

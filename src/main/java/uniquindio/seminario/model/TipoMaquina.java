@@ -11,10 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TipoMaquina {
-
-    @Column(length = 50)
-    private Integer idMF;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
@@ -37,10 +33,6 @@ public class TipoMaquina {
 
     @Column(length = 50)
     private String sistemaOperativo;
-
-
-    @Column(length = 50)
-    private String adapter;
 
     @OneToMany(mappedBy = "tipoMaquina")
     @ToString.Exclude

@@ -3,8 +3,10 @@ package uniquindio.seminario.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import uniquindio.seminario.dto.CredentialsDTO;
+import uniquindio.seminario.dto.HostNameDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.dto.UpdateDTO;
 import uniquindio.seminario.model.MaquinaFisica;
@@ -15,6 +17,8 @@ import uniquindio.seminario.services.MaquinaFisicaService;
 import uniquindio.seminario.services.MaquinaVirtualService;
 import uniquindio.seminario.services.TipoMaquinaService;
 import uniquindio.seminario.services.UsuarioService;
+
+import java.nio.CharBuffer;
 import java.util.List;
 
 @RestController
@@ -30,14 +34,15 @@ public class MaquinaVirtualRestController {
     private MaquinaFisicaService maquinaFisicaService;
     @Autowired
     private TipoMaquinaService tipoMaquinaService;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @PostMapping("/savevm")
     public MaquinaVirtualDTO guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) {
         System.out.println(mvDTO.toString());
         MaquinaFisica mf = maquinaFisicaService.obtenerMFID(mvDTO.getIdMF());
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
         TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(mvDTO.getTipoMV());
-        MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), usuario, mf, tipoMaquina , mvDTO.getEstado());
+        MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), mvDTO.getContrasenia(), usuario, mf, tipoMaquina , mvDTO.getEstado());
         return maquinaVirtualService.guardarMV(mv);
     }
 
@@ -48,12 +53,18 @@ public class MaquinaVirtualRestController {
         return maquinas;
     }
 
+    @PostMapping("/getvm")
+    public MaquinaVirtual getVM(@RequestBody Integer idVM){
+        return maquinaVirtualService.getVM(idVM);
+    }
 
     @PostMapping("/updatevms")
-    public void actualizarEstado(@RequestBody UpdateDTO update){
+    public HostNameDTO actualizarEstado(@RequestBody UpdateDTO update){
         Integer userId = update.getId();
         String estado = update.getCambio();
+        System.out.println("Estado: "+estado);
         maquinaVirtualService.cambiarEstado(userId, estado);
+        return new HostNameDTO(estado);
     }
 
     @PostMapping("/updatevmi")

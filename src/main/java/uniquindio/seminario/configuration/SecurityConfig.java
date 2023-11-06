@@ -18,7 +18,6 @@ public class SecurityConfig {
     private final UserAuthProvider userAuthProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        System.out.println("HOLAAAAAAAA");
         http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize.antMatchers("/api/**").permitAll()

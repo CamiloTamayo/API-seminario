@@ -27,6 +27,9 @@ public class MaquinaVirtual {
     @Column(length = 50)
     private String hostname;
 
+    @Column(length = 500)
+    private String contrasenia;
+
     @ManyToOne
     private Usuario usuario;
 
@@ -39,11 +42,12 @@ public class MaquinaVirtual {
     @ManyToOne
     private TipoMaquina tipoMaquina;
 
-    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, Usuario usuario, MaquinaFisica mfisica, TipoMaquina tipoMaquina, String estado) {
+    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, String contrasenia, Usuario usuario, MaquinaFisica mfisica, TipoMaquina tipoMaquina, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
         this.hostname = hostname;
+        this.contrasenia = contrasenia;
         this.usuario = usuario;
         this.mfisica = mfisica;
         this.estado = estado;
