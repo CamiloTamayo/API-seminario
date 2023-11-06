@@ -2,8 +2,7 @@ package uniquindio.seminario.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uniquindio.seminario.dto.HostNameDTO;
-import uniquindio.seminario.dto.MaquinaVirtualDTO;
+import uniquindio.seminario.dto.MensajeDTO;
 import uniquindio.seminario.services.TipoMaquinaService;
 
 @RestController
@@ -14,7 +13,7 @@ public class TipoMaquinaRestController {
     private TipoMaquinaService tipoMaquinaService;
 
     @GetMapping("/getHostname/{id}")
-    public HostNameDTO getHostname(@PathVariable Integer id){
-        return new HostNameDTO(tipoMaquinaService.obtenerTipo(id));
+    public MensajeDTO getHostname(@PathVariable Integer id){
+        return new MensajeDTO(tipoMaquinaService.obtenerTipo(id));
     }
 }

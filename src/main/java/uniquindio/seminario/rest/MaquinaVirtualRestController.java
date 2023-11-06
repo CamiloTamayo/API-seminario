@@ -1,12 +1,9 @@
 package uniquindio.seminario.rest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import uniquindio.seminario.dto.CredentialsDTO;
-import uniquindio.seminario.dto.HostNameDTO;
+import uniquindio.seminario.dto.MensajeDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.dto.UpdateDTO;
 import uniquindio.seminario.model.MaquinaFisica;
@@ -18,7 +15,6 @@ import uniquindio.seminario.services.MaquinaVirtualService;
 import uniquindio.seminario.services.TipoMaquinaService;
 import uniquindio.seminario.services.UsuarioService;
 
-import java.nio.CharBuffer;
 import java.util.List;
 
 @RestController
@@ -59,12 +55,12 @@ public class MaquinaVirtualRestController {
     }
 
     @PostMapping("/updatevms")
-    public HostNameDTO actualizarEstado(@RequestBody UpdateDTO update){
+    public MensajeDTO actualizarEstado(@RequestBody UpdateDTO update){
         Integer userId = update.getId();
         String estado = update.getCambio();
         System.out.println("Estado: "+estado);
         maquinaVirtualService.cambiarEstado(userId, estado);
-        return new HostNameDTO(estado);
+        return new MensajeDTO(estado);
     }
 
     @PostMapping("/updatevmi")

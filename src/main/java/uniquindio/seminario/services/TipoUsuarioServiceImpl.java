@@ -28,6 +28,10 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService, Serializable 
     @Override
     @Transactional(readOnly = false)
     public void actualizarTipoUsuario(TipoUsuario tipoUsuario) {
+    }
 
+    @Override
+    public TipoUsuario getTipoUsuario(int id) {
+        return tipoUsuarioRepo.findById(id).orElse(null);
     }
 }

@@ -9,4 +9,6 @@ public interface TipoUsuarioService {
     public void eliminarTipoUsuario(TipoUsuario tipoUsuario);
 
     public void actualizarTipoUsuario(TipoUsuario tipoUsuario);
+
+    public TipoUsuario getTipoUsuario(int id);
 }

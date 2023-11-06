@@ -30,7 +30,7 @@ public class UserAuthProvider {
 
     public String createToken(UsuarioDTO usuarioDTO){
         Date now = new Date();
-        Date validity = new Date(now.getTime() + 3_600_000);
+        Date validity = new Date(now.getTime() + 7_200_000);
         return JWT.create()
                 .withIssuer(usuarioDTO.getCorreo())
                 .withIssuedAt(now)
@@ -43,14 +43,16 @@ public class UserAuthProvider {
     }
 
     public Authentication validateToken(String token){
-        Algorithm algorithm = Algorithm.HMAC256(secretKey);
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        UsuarioDTO usuarioDTO = UsuarioDTO.builder()
-                .correo(decodedJWT.getIssuer())
-                .nombre(decodedJWT.getClaim("nombre").asString())
-                .apellidos(decodedJWT.getClaim("apellidos").asString())
-                .build();
-        return new UsernamePasswordAuthenticationToken(usuarioDTO, null, Collections.emptyList());
+        DecodedJWT decodedJWT = JWT.decode(token);
+        if(decodedJWT.getExpiresAt().before(new Date())){
+            return null;
+        }else {
+            UsuarioDTO usuarioDTO = UsuarioDTO.builder()
+                    .correo(decodedJWT.getIssuer())
+                    .nombre(decodedJWT.getClaim("nombre").asString())
+                    .apellidos(decodedJWT.getClaim("apellidos").asString())
+                    .build();
+            return new UsernamePasswordAuthenticationToken(usuarioDTO, null, Collections.emptyList());
+        }
     }
 }

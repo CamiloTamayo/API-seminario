@@ -50,12 +50,11 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
     }
 
     public UsuarioDTO login(CredentialsDTO credentialsDTO){
-        UsuarioDTO usuarioDTO;
         Usuario usuario = Optional.ofNullable(usuarioRepo.findByCorreo(credentialsDTO.getCorreo()))
                 .orElseThrow(() -> new AppException("Usuario desconocido", HttpStatus.NOT_FOUND));
         System.out.println("USUARIO"+ usuario.getNombre());
         if(passwordEncoder.matches(CharBuffer.wrap(credentialsDTO.getPassword()), usuario.getContrasenia())){
-            return usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getCorreo(), usuario.getApellidos(), usuario.getContrasenia());
+            return new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getCorreo(), usuario.getApellidos(), usuario.getContrasenia(), usuario.getTipoUsuario().getId()+"");
         }
         throw new AppException("Contraseña incorrecta", HttpStatus.BAD_REQUEST);
     }
@@ -67,7 +66,7 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
         usuarioDTO.setContrasenia(passwordEncoder.encode(CharBuffer.wrap(usuarioDTO.getContrasenia())));
         System.out.println(usuarioDTO.getContrasenia());
         Usuario savedUser = usuarioRepo.save(usuarioDTO);
-        return new UsuarioDTO(savedUser.getId(), savedUser.getNombre(), savedUser.getCorreo(), savedUser.getApellidos(), savedUser.getContrasenia());
+        return new UsuarioDTO(savedUser.getId(), savedUser.getNombre(), savedUser.getCorreo(), savedUser.getApellidos(), savedUser.getContrasenia(), savedUser.getTipoUsuario().getId()+"");
     }
 
 

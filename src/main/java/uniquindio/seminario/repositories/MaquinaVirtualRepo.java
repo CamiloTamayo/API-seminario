@@ -42,5 +42,8 @@ public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Intege
     @Modifying
     @Query("DELETE FROM MaquinaVirtual WHERE id = :idVM")
     void eliminarVM(@Param("idVM") Integer idVM);
+    @Modifying
+    @Query("DELETE FROM MaquinaVirtual m WHERE m.usuario.id = :idUser")
+    void eliminarVMsUser(@Param("idUser") Integer idUser);
 
 }

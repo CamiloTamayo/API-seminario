@@ -19,6 +19,7 @@ public class AuthRestController {
     @PostMapping("/login")
     public ResponseEntity<UsuarioDTO> login(@RequestBody CredentialsDTO credentialsDTO){
         UsuarioDTO usuarioDTO = userService.login(credentialsDTO);
+        System.out.println("SE REALIZA LOGIN");
         usuarioDTO.setToken(userAuthProvider.createToken(usuarioDTO));
         return ResponseEntity.ok(usuarioDTO);
     }

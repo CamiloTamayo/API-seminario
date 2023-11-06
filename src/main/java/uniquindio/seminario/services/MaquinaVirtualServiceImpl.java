@@ -1,24 +1,17 @@
 package uniquindio.seminario.services;
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
-import org.jasypt.util.text.AES256TextEncryptor;
+import org.aspectj.apache.bcel.classfile.annotation.NameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaVirtual;
 import uniquindio.seminario.repositories.MaquinaVirtualRepo;
-import uniquindio.seminario.repositories.UsuarioRepo;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.util.List;
 import java.io.Serializable;
 @EnableEncryptableProperties
@@ -27,15 +20,11 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
 
     @Autowired
     private MaquinaVirtualRepo mvRepo;
-    @Autowired
-    private UsuarioRepo usuarioRepo;
     @Override
     @Transactional(readOnly = false)
     public MaquinaVirtualDTO guardarMV(MaquinaVirtual mv){
         MaquinaVirtual vm = mvRepo.save(mv);
-        String nombre = vm.getNombre()+vm.getId();
         MaquinaVirtualDTO maquinaDTO = new MaquinaVirtualDTO(vm.getId()+"", vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getContrasenia(), vm.getEstado(), vm.getTipoMaquina().getId(), vm.getMfisica().getIdMF());
-        //mvRepo.actualizarNombre(vm.getId(), nombre);
         return maquinaDTO;
     }
 
@@ -51,7 +40,6 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
     }
     public List<MaquinaVirtual> obtenerMaquinasVirtuales(Integer userId) {
         List<MaquinaVirtual> maquinas = mvRepo.findByUser(userId);
-       System.out.println("lista"+maquinas.size());
         return maquinas;
     }
 
@@ -75,7 +63,19 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
     }
 
     public Integer obtenerUltimaVM(){
-        System.out.println(mvRepo.obtenerUltimaVM()+"idUltima");
         return mvRepo.obtenerUltimaVM();
+    }
+
+    @Override
+    public void eliminarVmsUsuario(Integer idUsuario) {
+        mvRepo.eliminarVMsUser(idUsuario);
+    }
+
+    public void eliminarVMsServidor(){
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("localhost:"))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
     }
 }

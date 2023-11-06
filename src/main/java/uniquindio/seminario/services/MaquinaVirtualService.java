@@ -23,4 +23,6 @@ public interface MaquinaVirtualService {
 
     public void cambiarHostname(Integer userId, String hostname);
     public Integer obtenerUltimaVM();
+
+    public void eliminarVmsUsuario(Integer idUsuario);
 }
