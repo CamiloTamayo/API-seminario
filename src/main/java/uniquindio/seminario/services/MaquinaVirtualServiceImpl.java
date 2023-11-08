@@ -71,6 +71,14 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
         mvRepo.eliminarVMsUser(idUsuario);
     }
 
+    @Override
+    public boolean verificarNombre(String nombre) {
+        if(mvRepo.findByNombre(nombre)!=null){
+            return true;
+        }
+        return false;
+    }
+
     public void eliminarVMsServidor(){
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

@@ -88,5 +88,10 @@ public class MaquinaVirtualRestController {
 
         maquinaVirtualService.eliminarMV(vmId);
     }
-
+    @PostMapping("/verificarNombre")
+    public MensajeDTO verificarNombre(@RequestBody MensajeDTO mensaje){
+        boolean exists = maquinaVirtualService.verificarNombre(mensaje.getNombre());
+        MensajeDTO respuesta = new MensajeDTO(Boolean.toString(exists));
+        return respuesta;
+    }
 }

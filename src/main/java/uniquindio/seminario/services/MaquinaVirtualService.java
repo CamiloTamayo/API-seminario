@@ -25,4 +25,6 @@ public interface MaquinaVirtualService {
     public Integer obtenerUltimaVM();
 
     public void eliminarVmsUsuario(Integer idUsuario);
+
+    public boolean verificarNombre(String nombre);
 }
