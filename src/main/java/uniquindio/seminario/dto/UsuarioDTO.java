@@ -15,10 +15,10 @@ public class UsuarioDTO {
     private String correo;
     private String apellidos;
     private String contrasenia;
-    private String tipoUsuario;
+    private Integer tipoUsuario;
     private String token;
 
-    public UsuarioDTO(Integer id, String nombre, String correo, String apellidos, String contrasenia, String tipoUsuario) {
+    public UsuarioDTO(Integer id, String nombre, String correo, String apellidos, String contrasenia, Integer tipoUsuario) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;

@@ -25,7 +25,7 @@ public class UsuarioRestController {
     UserAuthProvider userAuthProvider;
     @PostMapping("/register")
     public ResponseEntity<UsuarioDTO> guardar(@RequestBody UsuarioDTO usuarioInput){
-        TipoUsuario tipoUsuario = tipoUsuarioService.getTipoUsuario(Integer.parseInt(usuarioInput.getTipoUsuario()));
+        TipoUsuario tipoUsuario = tipoUsuarioService.getTipoUsuario(usuarioInput.getTipoUsuario());
         Usuario usuario = new Usuario(usuarioInput.getNombre(), usuarioInput.getApellidos(), usuarioInput.getCorreo(), usuarioInput.getContrasenia(), tipoUsuario);
         UsuarioDTO usuarioDTO = usuarioService.guardarUsuario(usuario);
         usuarioDTO.setToken(userAuthProvider.createToken(usuarioDTO));

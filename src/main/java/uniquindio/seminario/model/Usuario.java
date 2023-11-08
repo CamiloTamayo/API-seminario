@@ -35,12 +35,6 @@ public class Usuario {
     @JsonIgnore
     private List<MaquinaVirtual> maquinasVirtuales;
 
-    public Usuario(int id, String nombre, String correo, String contrasenia) {
-        this.id = id;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.contrasenia = contrasenia;
-    }
 
     public Usuario(String nombre, String apellidos, String correo, String contrasenia, TipoUsuario tipoUsuario) {
         this.nombre = nombre;
