@@ -29,27 +29,23 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("JWTFILTER");
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println("SE LEE EL HEADER"+ header);
         if(header!=null){
             String[] authElements = header.split(" ");
             if(authElements.length == 2 && "Bearer".equals(authElements[0])){
                 Authentication auth = userAuthProvider.validateToken(authElements[1]);
-                System.out.println("SE VALIDA EL TOKEN");
                 if(auth!=null || request.getRequestURL().toString().contains("login")){
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }else{
                     SecurityContextHolder.clearContext();
-                    AppException appException = new AppException("Sesion expirada", HttpStatus.UNAUTHORIZED);
                     response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    OutputStream responseStream = response.getOutputStream();
                     ObjectMapper mapper = new ObjectMapper();
-                    mapper.writeValue(responseStream, appException);
+                    mapper.writeValue(response.getOutputStream(), new AppException("Sesion expirada", HttpStatus.UNAUTHORIZED));
+                    return;
                 }
             }
         }
-        filterChain.doFilter(request, response);
+            filterChain.doFilter(request, response);
     }
 }
