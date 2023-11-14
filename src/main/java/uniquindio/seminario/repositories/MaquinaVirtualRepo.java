@@ -17,6 +17,9 @@ public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Intege
     @Query("select m from MaquinaVirtual m where m.usuario.id=:id")
     List<MaquinaVirtual> findByUser(Integer id);
 
+    @Query("select m from MaquinaVirtual m where m.mfisica.idMF=:PMid")
+    List<MaquinaVirtual> findByPM(Integer PMid);
+
     @Query("select m from MaquinaVirtual  m where m.id=:idVM")
     MaquinaVirtual obtenerDetalles(Integer idVM);
 

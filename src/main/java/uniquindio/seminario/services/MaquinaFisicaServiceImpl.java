@@ -33,7 +33,10 @@ public class MaquinaFisicaServiceImpl implements MaquinaFisicaService, Serializa
     }
 
     @Transactional(readOnly = true)
-    public List<MaquinaFisica> findAll(){return maquinaFisicaRepo.findAll();}
+    public List<MaquinaFisica> findAll(){
+        System.out.println("aaa");
+        System.out.println(maquinaFisicaRepo.findAll());
+        return maquinaFisicaRepo.findAll();}
 
     @Override
     public MaquinaFisica obtenerMFID(Integer id) {

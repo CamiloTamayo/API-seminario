@@ -43,6 +43,11 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
         return maquinas;
     }
 
+    public List<MaquinaVirtual> obtenerMaquinasVirtualesFM(Integer PMId) {
+        List<MaquinaVirtual> maquinas = mvRepo.findByPM(PMId);
+        return maquinas;
+    }
+
     @Override
     public MaquinaVirtual getVM(Integer idVM) {
         return mvRepo.findById(idVM).orElse(null);

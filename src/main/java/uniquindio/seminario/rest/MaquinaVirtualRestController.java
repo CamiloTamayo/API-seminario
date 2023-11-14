@@ -44,8 +44,14 @@ public class MaquinaVirtualRestController {
 
     @PostMapping("/getvms")
     public List<MaquinaVirtual> getMVs(@RequestBody Integer userId){
-        System.out.println(userId);
         List<MaquinaVirtual> maquinas = maquinaVirtualService.obtenerMaquinasVirtuales(userId);
+        return maquinas;
+    }
+
+    @PostMapping("/getvmspm")
+    public List<MaquinaVirtual> getMVsPM(@RequestBody Integer PMId){
+        System.out.println(PMId);
+        List<MaquinaVirtual> maquinas = maquinaVirtualService.obtenerMaquinasVirtualesFM(PMId);
         return maquinas;
     }
 
