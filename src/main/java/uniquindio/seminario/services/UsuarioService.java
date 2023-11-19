@@ -1,6 +1,5 @@
 package uniquindio.seminario.services;
 
-import org.springframework.stereotype.Service;
 import uniquindio.seminario.dto.CredentialsDTO;
 import uniquindio.seminario.dto.UsuarioDTO;
 import uniquindio.seminario.model.Usuario;

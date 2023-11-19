@@ -1,11 +1,8 @@
 package uniquindio.seminario.services;
 
 import org.springframework.stereotype.Service;
-import uniquindio.seminario.dto.CredentialsDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaVirtual;
-
-import java.security.InvalidKeyException;
 import java.util.List;
 
 @Service

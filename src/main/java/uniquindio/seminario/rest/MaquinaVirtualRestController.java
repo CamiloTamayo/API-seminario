@@ -1,7 +1,6 @@
 package uniquindio.seminario.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import uniquindio.seminario.dto.MensajeDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
@@ -30,11 +29,9 @@ public class MaquinaVirtualRestController {
     private MaquinaFisicaService maquinaFisicaService;
     @Autowired
     private TipoMaquinaService tipoMaquinaService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/savevm")
     public MaquinaVirtualDTO guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) {
-        System.out.println(mvDTO.toString());
         MaquinaFisica mf = maquinaFisicaService.obtenerMFID(mvDTO.getIdMF());
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
         TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(mvDTO.getTipoMV());
