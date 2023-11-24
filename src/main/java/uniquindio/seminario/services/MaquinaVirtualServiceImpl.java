@@ -7,10 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaVirtual;
 import uniquindio.seminario.repositories.MaquinaVirtualRepo;
-
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 import java.util.List;
 import java.io.Serializable;
 @EnableEncryptableProperties
@@ -83,11 +79,4 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
         return false;
     }
 
-    public void eliminarVMsServidor(){
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("localhost:"))
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .build();
-    }
 }

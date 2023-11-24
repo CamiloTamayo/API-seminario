@@ -1,6 +1,7 @@
 package uniquindio.seminario.configuration;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.RegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
+import java.util.Map;
 
 @Configuration
 @EnableWebMvc

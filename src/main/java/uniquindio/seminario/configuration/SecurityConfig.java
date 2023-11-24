@@ -28,7 +28,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize.antMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 );
-        System.out.println("TERMINA SECURITY CONFIG");
         return http.build();
     }
 }
