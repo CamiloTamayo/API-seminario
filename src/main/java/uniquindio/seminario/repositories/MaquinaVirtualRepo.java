@@ -20,9 +20,6 @@ public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Intege
     @Query("select m from MaquinaVirtual m where m.mfisica.idMF=:PMid")
     List<MaquinaVirtual> findByPM(Integer PMid);
 
-    @Query("select m from MaquinaVirtual  m where m.id=:idVM")
-    MaquinaVirtual obtenerDetalles(Integer idVM);
-
     @Modifying
     @Query("UPDATE MaquinaVirtual m SET m.estado = :estado WHERE m.id = :idVM")
     void cambiarEstado(@Param("idVM") Integer idVM, @Param("estado") String estado);
@@ -34,10 +31,6 @@ public interface MaquinaVirtualRepo extends JpaRepository<MaquinaVirtual, Intege
     @Modifying
     @Query("UPDATE MaquinaVirtual m SET m.hostname = :hostname WHERE m.id = :idVM")
     void cambiarHostname(@Param("idVM") Integer idVM, @Param("hostname") String hostname);
-
-    @Modifying
-    @Query("UPDATE MaquinaVirtual m SET m.nombre = :nombre WHERE m.id = :idVM")
-    void actualizarNombre(@Param("idVM") Integer idVM, @Param("nombre") String nombre);
 
     @Query("select m.id from MaquinaVirtual m WHERE m.id = (SELECT MAX(id) FROM MaquinaVirtual)")
     Integer obtenerUltimaVM();

@@ -88,7 +88,6 @@ public class MaquinaVirtualRestController {
     @DeleteMapping("/deletevm")
     public void eliminarVM(@RequestBody UpdateDTO update){
         Integer vmId = update.getId();
-
         maquinaVirtualService.eliminarMV(vmId);
     }
     @PostMapping("/verificarNombre")
