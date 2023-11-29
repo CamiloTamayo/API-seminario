@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MaquinaVirtualDTO {
-    private String id;
+    private Integer id;
     private String nombre;
     private String ip;
     private String hostname;

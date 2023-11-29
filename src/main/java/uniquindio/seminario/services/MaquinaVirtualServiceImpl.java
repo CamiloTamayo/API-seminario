@@ -22,7 +22,7 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
     @Transactional(readOnly = false)
     public MaquinaVirtualDTO guardarMV(MaquinaVirtual mv){
         MaquinaVirtual vm = mvRepo.save(mv);
-        return new MaquinaVirtualDTO(vm.getId()+"", vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getContrasenia(), vm.getEstado(), vm.getTipoMaquina().getNombre(), vm.getMfisica().getIdMF(), vm.getSistemaOperativo().getId());
+        return new MaquinaVirtualDTO(vm.getId(), vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getContrasenia(), vm.getEstado(), vm.getTipoMaquina().getNombre(), vm.getMfisica().getIdMF(), vm.getSistemaOperativo().getId());
     }
 
     @Override
