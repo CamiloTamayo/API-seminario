@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class MaquinaVirtualDTO {
     private String id;
     private String nombre;
@@ -16,8 +17,9 @@ public class MaquinaVirtualDTO {
     private Integer idUser;
     private String contrasenia;
     private String estado;
-    private Integer tipoMV;
+    private String tipoMV;
     private Integer idMF;
+    private Integer os;
 
     @Override
     public String toString() {
@@ -31,18 +33,6 @@ public class MaquinaVirtualDTO {
                 ", tipoMV='" + tipoMV + '\'' +
                 ", idMF=" + idMF +
                 '}';
-    }
-
-    public MaquinaVirtualDTO(String id, String nombre, String ip, String hostname, Integer idUser, String contrasenia, String estado, Integer tipoMV, Integer idMF) {
-        this.id = id;
-        this.nombre = nombre;
-        this.ip = ip;
-        this.hostname = hostname;
-        this.idUser = idUser;
-        this.contrasenia = contrasenia;
-        this.estado = estado;
-        this.tipoMV = tipoMV;
-        this.idMF = idMF;
     }
 }
 

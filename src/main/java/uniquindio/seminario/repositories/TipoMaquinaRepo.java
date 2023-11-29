@@ -9,4 +9,7 @@ import uniquindio.seminario.model.TipoMaquina;
 public interface TipoMaquinaRepo extends JpaRepository<TipoMaquina, Integer> {
     @Query("select t.nombre from TipoMaquina t WHERE t.id = :id")
     String obtenerTipo(@Param("id") Integer id);
+
+    @Query("select t from TipoMaquina t WHERE t.nombre = :nombre")
+    TipoMaquina obtenerTipoNombre(@Param("nombre") String nombre);
 }

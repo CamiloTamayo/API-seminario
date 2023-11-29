@@ -7,6 +7,8 @@ import uniquindio.seminario.model.TipoMaquina;
 import uniquindio.seminario.repositories.TipoMaquinaRepo;
 
 import java.io.Serializable;
+import java.util.List;
+
 @Component
 public class TipoMaquinaServiceImpl implements TipoMaquinaService, Serializable {
 
@@ -14,27 +16,15 @@ public class TipoMaquinaServiceImpl implements TipoMaquinaService, Serializable 
     private TipoMaquinaRepo tipoMaquinaRepo;
 
     @Override
-    public TipoMaquina obtenerTMId(Integer id) {
-        return tipoMaquinaRepo.findById(id).get();
+    public TipoMaquina obtenerTMNombre(String nombre) {
+        return tipoMaquinaRepo.obtenerTipoNombre(nombre);
     }
 
     @Override
-    @Transactional(readOnly = false)
-    public void guardarTipoMaquina(TipoMaquina tipoMaquina) {
-        tipoMaquinaRepo.save(tipoMaquina);
+    public List<TipoMaquina> getTipos() {
+        return tipoMaquinaRepo.findAll();
     }
 
-    @Override
-    @Transactional(readOnly = false)
-    public void eliminarTipoMaquina(TipoMaquina tipoMaquina) {
-        tipoMaquinaRepo.delete(tipoMaquina);
-    }
-
-    @Override
-    @Transactional(readOnly = false)
-    public void actualizarTipoMaquina(TipoMaquina tipoMaquina) {
-
-    }
 
     @Override
     public String obtenerTipo(Integer id) {

@@ -8,7 +8,7 @@
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="@localhost [2]" uuid="d8936d95-3273-4a0f-9e04-326781847d49">
+    <data-source source="LOCAL" name="@localhost [2]" uuid="0834a9cc-bb6b-46ff-b0e5-110ad566d18b">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>

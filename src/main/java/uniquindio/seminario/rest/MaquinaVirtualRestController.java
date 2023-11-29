@@ -5,14 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import uniquindio.seminario.dto.MensajeDTO;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.dto.UpdateDTO;
-import uniquindio.seminario.model.MaquinaFisica;
-import uniquindio.seminario.model.MaquinaVirtual;
-import uniquindio.seminario.model.TipoMaquina;
-import uniquindio.seminario.model.Usuario;
-import uniquindio.seminario.services.MaquinaFisicaService;
-import uniquindio.seminario.services.MaquinaVirtualService;
-import uniquindio.seminario.services.TipoMaquinaService;
-import uniquindio.seminario.services.UsuarioService;
+import uniquindio.seminario.model.*;
+import uniquindio.seminario.repositories.SistemaOperativoRepo;
+import uniquindio.seminario.services.*;
 
 import java.util.List;
 
@@ -29,13 +24,16 @@ public class MaquinaVirtualRestController {
     private MaquinaFisicaService maquinaFisicaService;
     @Autowired
     private TipoMaquinaService tipoMaquinaService;
+    @Autowired
+    private SistemaOperativoService sistemaOperativoService;
 
     @PostMapping("/savevm")
     public MaquinaVirtualDTO guardarMV(@RequestBody MaquinaVirtualDTO mvDTO) {
         MaquinaFisica mf = maquinaFisicaService.obtenerMFID(mvDTO.getIdMF());
         Usuario usuario = usuarioService.obtenerUsuarioID(mvDTO.getIdUser());
-        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMId(mvDTO.getTipoMV());
-        MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), mvDTO.getHostname(), mvDTO.getContrasenia(), usuario, mf, tipoMaquina , mvDTO.getEstado());
+        TipoMaquina tipoMaquina = tipoMaquinaService.obtenerTMNombre(mvDTO.getTipoMV());
+        SistemaOperativo sistemaOperativo = sistemaOperativoService.getSistema(mvDTO.getOs());
+        MaquinaVirtual mv = new MaquinaVirtual(null, mvDTO.getNombre(), mvDTO.getIp(), sistemaOperativo.getHostname(), mvDTO.getContrasenia(), usuario, mf, tipoMaquina , mvDTO.getEstado(), sistemaOperativo);
         return maquinaVirtualService.guardarMV(mv);
     }
 

@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import uniquindio.seminario.dto.MaquinaVirtualDTO;
 import uniquindio.seminario.model.MaquinaVirtual;
+import uniquindio.seminario.model.TipoMaquina;
 import uniquindio.seminario.repositories.MaquinaVirtualRepo;
+import uniquindio.seminario.repositories.TipoMaquinaRepo;
+
 import java.util.List;
 import java.io.Serializable;
 @EnableEncryptableProperties
@@ -19,8 +22,7 @@ public class MaquinaVirtualServiceImpl implements MaquinaVirtualService, Seriali
     @Transactional(readOnly = false)
     public MaquinaVirtualDTO guardarMV(MaquinaVirtual mv){
         MaquinaVirtual vm = mvRepo.save(mv);
-        MaquinaVirtualDTO maquinaDTO = new MaquinaVirtualDTO(vm.getId()+"", vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getContrasenia(), vm.getEstado(), vm.getTipoMaquina().getId(), vm.getMfisica().getIdMF());
-        return maquinaDTO;
+        return new MaquinaVirtualDTO(vm.getId()+"", vm.getNombre(), vm.getIp(), vm.getHostname(), vm.getUsuario().getId(), vm.getContrasenia(), vm.getEstado(), vm.getTipoMaquina().getNombre(), vm.getMfisica().getIdMF(), vm.getSistemaOperativo().getId());
     }
 
     @Override

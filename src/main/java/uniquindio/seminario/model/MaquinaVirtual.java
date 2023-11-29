@@ -1,15 +1,14 @@
 package uniquindio.seminario.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class MaquinaVirtual {
 
@@ -42,7 +41,10 @@ public class MaquinaVirtual {
     @ManyToOne
     private TipoMaquina tipoMaquina;
 
-    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, String contrasenia, Usuario usuario, MaquinaFisica mfisica, TipoMaquina tipoMaquina, String estado) {
+    @ManyToOne
+    private SistemaOperativo sistemaOperativo;
+
+    public MaquinaVirtual(Integer id, String nombre, String ip, String hostname, String contrasenia, Usuario usuario, MaquinaFisica mfisica, TipoMaquina tipoMaquina, String estado, SistemaOperativo sistemaOperativo) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
@@ -52,5 +54,6 @@ public class MaquinaVirtual {
         this.mfisica = mfisica;
         this.estado = estado;
         this.tipoMaquina = tipoMaquina;
+        this.sistemaOperativo = sistemaOperativo;
     }
 }
